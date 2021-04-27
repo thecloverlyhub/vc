@@ -34,7 +34,7 @@ jobs:
           docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t vcbot 
 
       - name: running VC bot
-        timeout-minutes: 338
+        timeout-minutes: 340
         continue-on-error: true
         run: |
           cd source
