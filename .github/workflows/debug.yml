@@ -31,7 +31,7 @@ jobs:
         run: |
           git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.repo }} source
           cd source
-          docker build -t musicplayer 
+          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t musicplayer
 
       - name: running VC bot
         timeout-minutes: 340
