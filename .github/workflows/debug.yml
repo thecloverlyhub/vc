@@ -31,14 +31,14 @@ jobs:
         run: |
           git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.repo }} source
           cd source
-          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t vcbot 
+          docker build -t musicplayer 
 
       - name: running VC bot
         timeout-minutes: 340
         continue-on-error: true
         run: |
           cd source
-          docker run --privileged --rm -i vcbot
+          docker run --env-file .env musicplayer
 
       - name: Loop Workflow
         continue-on-error: true
