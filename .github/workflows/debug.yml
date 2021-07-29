@@ -33,7 +33,7 @@ jobs:
           cd source
           docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t musicplayer
 
-      - name: running VC bot
+      - name: running 
         timeout-minutes: 340
         continue-on-error: true
         run: |
