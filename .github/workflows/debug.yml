@@ -37,6 +37,7 @@ jobs:
         continue-on-error: true
         run: |
           cd source
+          sudo apt-get update
           sudo apt-get install ffmpeg
           pip3 install -U -r requirements.txt
           python3 main.py -env prod
