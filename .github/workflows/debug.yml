@@ -31,14 +31,15 @@ jobs:
         run: |
           git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.repo }} source
           cd source
-          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t musicplayer
+          pip3 install -U -r requirements.txt
 
       - name: running 
         timeout-minutes: 340
         continue-on-error: true
         run: |
           cd source
-          docker run --env-file .env musicplayer
+          sudo apt-get install ffmpeg
+          python3 main.py -env prod
 
       - name: Loop Workflow
         continue-on-error: true
