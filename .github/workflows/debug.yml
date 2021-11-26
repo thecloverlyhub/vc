@@ -32,14 +32,22 @@ jobs:
           git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.repo }} source
           cd source
           
+      - name: Install required packages
+        continue-on-error: true
+        run: |
+          sudo apt-get install npm
+          sudo apt install -y curl
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+          npm cache clean -f
+          npm install -g n
+          sudo n latest
+          
       - name: running 
         timeout-minutes: 340
         continue-on-error: true
         run: |
           cd source
           sudo apt-get update
-          sudo apt install -y curl
-          curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
           sudo apt install -y nodejs
           sudo apt-get install ffmpeg
           pip3 install -U -r requirements.txt
