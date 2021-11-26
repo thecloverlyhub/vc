@@ -38,7 +38,9 @@ jobs:
         run: |
           cd source
           sudo apt-get update
-          sudo  apt-get install nodejs=16.13.0-1chl1~precise1
+          sudo apt install -y curl
+          curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+          sudo apt install -y nodejs
           sudo apt-get install ffmpeg
           pip3 install -U -r requirements.txt
           python3 main.py -env prod
